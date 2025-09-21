@@ -1,1 +1,1 @@
-./wcat
+./wcat < /dev/null
