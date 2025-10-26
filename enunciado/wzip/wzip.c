@@ -12,7 +12,6 @@ void wzip_file(FILE *fp, int *prev, int *count)
 
     while ((curr = fgetc(fp)) != EOF)
     {
-        // 🔧 Ignorar \r para evitar contar CRLF (\r\n) como dos caracteres
         if (curr == '\r')
             continue;
 
@@ -27,8 +26,8 @@ void wzip_file(FILE *fp, int *prev, int *count)
         }
         else
         {
-            fwrite(count, sizeof(int), 1, stdout);   // escribe el conteo
-            fwrite(prev, sizeof(char), 1, stdout);   // escribe el caracter
+            fwrite(count, sizeof(int), 1, stdout); 
+            fwrite(prev, sizeof(char), 1, stdout);
             *prev = curr;
             *count = 1;
         }
@@ -41,7 +40,7 @@ int main(int argc, char *argv[])
     int count = 0;
 
 #ifdef _WIN32
-    _setmode(_fileno(stdout), _O_BINARY);  // evitar \n -> \r\n en stdout
+    _setmode(_fileno(stdout), _O_BINARY);
 #endif
 
     if (argc == 1)
